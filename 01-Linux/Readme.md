@@ -207,7 +207,7 @@ In order to get the amount of images in the said folder, the following code was 
 
 ![count](https://user-images.githubusercontent.com/47038625/52249507-7cda6f00-28c1-11e9-85aa-a18b48a91f01.png)
 
-This code counts the amount of files that end with .jpg. knowing that all images in this folders use this format, this code is counting the amount of images in them. There's a total of 500 images in this folder. The code shown also creates a .text file containing information for every image in the folder. this will be used later. 
+This code counts the amount of files that end with .jpg. knowing that all images in this folders use this format (which was made sure using the "ls" command on all three folders), this code is counting the amount of images in them. There's a total of 500 images in this folder. The code shown also creates a .text file containing information for every image in the folder. this will be used later. 
  
 5. What are all the different resolutions? What is their format? Tip: use ``awk``, ``sort``, ``uniq``
 
@@ -215,10 +215,18 @@ Using the .text file created in the last exercise, the next code was made:
 
 ![all_dimension](https://user-images.githubusercontent.com/47038625/52249832-0fc7d900-28c3-11e9-9c2a-23992aba28d6.png)
 
-In this code, the command "awk" is used, in order to get only the dimension informaton of the images. This is written in another .text file.
+In this code, the command "awk" is used, in order to only get the dimension informaton of the images. This is written in another .text file.
 after that, the command "sort" is used so all dimensions are ordered. This must be done so the command "uniq" works, as it only deletes equal information when it's next to each other. doing this, we can conlude the only dimensions present in this folder are:
-321x481 & 481x321.
+321x481 & 481x321, which represent portrait and landscape orientation respectively.
+
 6. How many of them are in *landscape* orientation (opposed to *portrait*)? Tip: use ``awk`` and ``cut``
+
+To get the amount of images in Portrait and Landscape orientation, the following code was made:
+
+![port_land](https://user-images.githubusercontent.com/47038625/52250176-8e714600-28c4-11e9-8a8b-4cd970bcb219.png)
+
+This code transposes the .text file containing the dimensions of all images, then using the command "cut" and other manipulations, compares it to "481x321", being this the only Landscape orientation, the code sums 1 to the landscape pictures counter, otherwise sums 1 to the portrait pictures one. After that, prints both numbers on the terminal.
+The amount of Portrait oriented pictures is 152, while the amount of Landscape oriented pictures is 348.
  
 7. Crop all images to make them square (256x256) and save them in a different folder. Tip: do not forget about  [imagemagick](http://www.imagemagick.org/script/index.php).
 
