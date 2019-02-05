@@ -239,21 +239,29 @@ The resulting folder looks like this:
 
 ![screenshot from 2019-02-04 22-01-43](https://user-images.githubusercontent.com/47038625/52250979-84e9dd00-28c8-11e9-98e2-01292bd6a2fe.png) 
 
-References:
+# References:
+
 https://askubuntu.com/questions/25347/what-command-do-i-need-to-unzip-extract-a-tar-gz-file
 Extract .tar
+
 https://www.lifewire.com/write-awk-commands-and-scripts-2200573
 use awk
+
 https://unix.stackexchange.com/questions/76049/what-is-the-difference-between-sort-u-and-sort-uniq
 use sort & uniq
+
 https://www.computerhope.com/unix/ucut.htm
 use cut
+
 https://www.tecmint.com/check-linux-disk-usage-of-files-and-directories/
 get disk usage 
+
 https://stackoverflow.com/questions/10515964/counter-increment-in-bash-loop-not-working
 make a counter
+
 https://odin.mdacc.tmc.edu/~ryu/linux.html
 transpose a .text file
+
 http://www.imagemagick.org/Usage/crop/
 crop images
 
