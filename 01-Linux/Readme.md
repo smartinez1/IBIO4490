@@ -240,6 +240,81 @@ The resulting folder looks like this:
 
 ![screenshot from 2019-02-04 22-01-43](https://user-images.githubusercontent.com/47038625/52250979-84e9dd00-28c8-11e9-98e2-01292bd6a2fe.png) 
 
+
+Complete Code:
+
+```bash
+cd ~
+cd /home/santiago/Documents/BSDS300/BSR/BSDS500/data
+ ##Folder where val, train & test images are
+
+rm -rf images_info.txt
+# find all files whose name end in .jpg
+images_=$(find images -name *.jpg)
+#iterate over them
+COUNTER=0
+for im in ${images_[*]}
+do
+  identify $im>>images_info.txt
+  COUNTER=$[$COUNTER +1]
+   done; 
+echo "Number of images:"
+echo ${COUNTER[*]}
+###USE OF THE .TXT FILE
+rm -rf images_dimensions.txt
+
+awk '{print $3}' images_info.txt>images_dimensions.txt
+echo "Unique Dimension:"
+sort images_dimensions.txt | uniq 
+### 
+rm -rf tr_img_dim.txt
+tr '\n' ',' < images_dimensions.txt > tr_img_dim.txt
+
+INIT=1
+ENDD=7
+
+PORTRAIT=0
+LADNSCAPE=0
+
+for im in ${images_[*]}
+do	
+aux=$(cut -c ${INIT[*]}-${ENDD[*]}  tr_img_dim.txt)
+INIT=$[$INIT +8]
+ENDD=$[$ENDD +8]
+
+   if [ ${aux} = '481x321' ]
+   then
+      LANDSCAPE=$[LANDSCAPE+1]
+   else
+      PORTRAIT=$[PORTRAIT+1]
+   fi
+
+done;
+echo Number of Portrait vs Landscape images:
+echo Portrait=$PORTRAIT
+echo Landscape=$LANDSCAPE
+### Cropping
+rm -rf cropped_images
+mkdir cropped_images
+COUNTER=1
+
+for im in ${images_[*]}
+do
+convert $im -crop 256x256+0+0 $COUNTER.jpg
+
+mv $COUNTER.jpg /home/santiago/Documents/BSDS300/BSR/BSDS500/data/cropped_images
+
+COUNTER=$[$COUNTER +1]
+done;
+echo Folder finished
+
+
+rm -rf images_info.txt
+rm -rf images_dimensions.txt
+rm -rf tr_img_dim.txt
+```
+
+
 # References:
 
 https://askubuntu.com/questions/25347/what-command-do-i-need-to-unzip-extract-a-tar-gz-file
