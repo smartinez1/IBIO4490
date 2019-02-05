@@ -234,11 +234,28 @@ In order to crop all images to square size and put them in a new folder the foll
 
 ![cropping](https://user-images.githubusercontent.com/47038625/52250530-50752180-28c6-11e9-88f4-ebc043b4cbe5.png)
 
-This code creates a new folder called cropped_images and then, again, iterates over all images in the last folder. the processing consist of using the command "convert" with the flag "-crop" and giving the parameter 256x256+0+0, which simply says that the cropping will go from the superior left corner 256 pixel down and 256 right. The name given to each crop will be a number from 1 to the total amount of images, which is done using a counter and using it as a name.
+This code creates a new folder called cropped_images and then, again, iterates over all images in the last folder. the processing consists of using the command "convert" with the flag "-crop" and giving the parameter 256x256+0+0, which simply says that the cropping will go from the superior left corner 256 pixel down and 256 right. The name given to each crop will be a number from 1 to the total amount of images, which is done using a counter and using it as a name.
 The resulting folder looks like this:
 
 ![screenshot from 2019-02-04 22-01-43](https://user-images.githubusercontent.com/47038625/52250979-84e9dd00-28c8-11e9-98e2-01292bd6a2fe.png) 
 
+References:
+https://askubuntu.com/questions/25347/what-command-do-i-need-to-unzip-extract-a-tar-gz-file
+Extract .tar
+https://www.lifewire.com/write-awk-commands-and-scripts-2200573
+use awk
+https://unix.stackexchange.com/questions/76049/what-is-the-difference-between-sort-u-and-sort-uniq
+use sort & uniq
+https://www.computerhope.com/unix/ucut.htm
+use cut
+https://www.tecmint.com/check-linux-disk-usage-of-files-and-directories/
+get disk usage 
+https://stackoverflow.com/questions/10515964/counter-increment-in-bash-loop-not-working
+make a counter
+https://odin.mdacc.tmc.edu/~ryu/linux.html
+transpose a .text file
+http://www.imagemagick.org/Usage/crop/
+crop images
 
 # Report
 
