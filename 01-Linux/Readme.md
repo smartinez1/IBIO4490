@@ -194,16 +194,16 @@ The database was downloaded by copying the download link into the terminal and u
 
 ![screenshot from 2019-01-31 18-05-31](https://user-images.githubusercontent.com/47038625/52248684-9679b780-28bd-11e9-90b7-d763b5b6f88a.png)
 
-After downloading the compressed file, the following command was used in orde to uncompress it:  "tar -xvzf BSR_bsds500.tgz". The result was satisfactory. 
+After downloading the compressed file, the following command was used in order to uncompress it:  "tar -xvzf BSR_bsds500.tgz". The result was satisfactory. 
  
 4. What is the disk size of the uncompressed dataset, How many images are in the directory 'BSR/BSDS500/data/images'?
 
-The command "du -h -c" was used in order to get this information. "du" returns the disk usage of the file inside the give folder, the "-h" flag converts the result returned by the original function into "human" readable form and the "-c" flag returns the total disk usage of all files in the selected folder. The results were the following:
+The command "du -h -c" was used in order to get this information. "du" returns the disk usage of the file inside the given folder, the "-h" flag converts the result returned by the original function into "human" readable form (b, kb, mb, etc.) and the "-c" flag returns the total disk usage of all files in the selected folder. The results were the following:
 
-![screenshot from 2019-02-03 19-15-48](https://user-images.githubusercontent.com/47038625/52249164-9975a780-28bf-11e9-80b2-eae5c5e5f7e6.png)
+![du](https://user-images.githubusercontent.com/47038625/52251392-916f3500-28ca-11e9-8c6f-69c05236add1.png)
 in which we can read that the total disk size of the uncompressed file is of 73 mb.
 
-In order to get the amount of images in the said folder, the following code was written:
+In order to get the amount of images in the requested folder, the following code was written:
 
 ![count](https://user-images.githubusercontent.com/47038625/52249507-7cda6f00-28c1-11e9-85aa-a18b48a91f01.png)
 
@@ -216,7 +216,7 @@ Using the .text file created in the last exercise, the next code was made:
 ![all_dimension](https://user-images.githubusercontent.com/47038625/52249832-0fc7d900-28c3-11e9-9c2a-23992aba28d6.png)
 
 In this code, the command "awk" is used, in order to only get the dimension informaton of the images. This is written in another .text file.
-after that, the command "sort" is used so all dimensions are ordered. This must be done so the command "uniq" works, as it only deletes equal information when it's next to each other. doing this, we can conlude the only dimensions present in this folder are:
+After that, the command "sort" is used so all dimensions are ordered. This must be done so the command "uniq" works, as it only deletes equal information when it's next to each other. Doing this, we can conlude the only dimensions present in this folder are:
 321x481 & 481x321, which represent portrait and landscape orientation respectively.
 
 6. How many of them are in *landscape* orientation (opposed to *portrait*)? Tip: use ``awk`` and ``cut``
