@@ -201,6 +201,7 @@ After downloading the compressed file, the following command was used in order t
 The command "du -h -c" was used in order to get this information. "du" returns the disk usage of the file inside the given folder, the "-h" flag converts the result returned by the original function into "human" readable form (b, kb, mb, etc.) and the "-c" flag returns the total disk usage of all files in the selected folder. The results were the following:
 
 ![du](https://user-images.githubusercontent.com/47038625/52251392-916f3500-28ca-11e9-8c6f-69c05236add1.png)
+
 in which we can read that the total disk size of the uncompressed file is of 73 mb.
 
 In order to get the amount of images in the requested folder, the following code was written:
