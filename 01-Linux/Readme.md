@@ -186,9 +186,19 @@ because it is no longer necessary to specify "Python" before executing, it's eno
 
 ![cositoraro](https://user-images.githubusercontent.com/47038625/52246504-1ac73d00-28b4-11e9-9e64-aa1f37648222.png)
 
+This python program tells the user wether the entered number is prime or not, it can be clearly seen that it can be used by specifying python to run it or using the aforementioned syntaxis.
+
 3. Download using ``wget`` the [*bsds500*](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html#bsds500) image segmentation database, and decompress it using ``tar`` (keep it in you hard drive, we will come back over this data in a few weeks).
+
+![screenshot from 2019-01-31 18-05-31](https://user-images.githubusercontent.com/47038625/52248684-9679b780-28bd-11e9-90b7-d763b5b6f88a.png)
+After downloading the compressed file, the following command was used in orde to uncompress it:  "tar -xvzf BSR_bsds500.tgz". The result was satisfactory. 
  
 4. What is the disk size of the uncompressed dataset, How many images are in the directory 'BSR/BSDS500/data/images'?
+
+The command "du -h -c" was used in order to get this information. "du" returns the disk usage of the file inside the give folder, the "-h" flag converts the result returned by the original function into "human" readable form and the "-c" flag returns the total disk usage of all files in the selected folder. The results were the following:
+![screenshot from 2019-02-03 19-15-48](https://user-images.githubusercontent.com/47038625/52249164-9975a780-28bf-11e9-80b2-eae5c5e5f7e6.png)
+in which we can read that the total disk usage of the uncompressed file is of 77 mb
+ 
  
 5. What are all the different resolutions? What is their format? Tip: use ``awk``, ``sort``, ``uniq`` 
 
