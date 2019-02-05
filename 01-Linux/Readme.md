@@ -190,17 +190,28 @@ This python program tells the user wether the entered number is prime or not, it
 
 3. Download using ``wget`` the [*bsds500*](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html#bsds500) image segmentation database, and decompress it using ``tar`` (keep it in you hard drive, we will come back over this data in a few weeks).
 
+The database was downloaded by copying the download link into the terminal and using the "wget -r" to download it into the selected folder.
+
 ![screenshot from 2019-01-31 18-05-31](https://user-images.githubusercontent.com/47038625/52248684-9679b780-28bd-11e9-90b7-d763b5b6f88a.png)
+
 After downloading the compressed file, the following command was used in orde to uncompress it:  "tar -xvzf BSR_bsds500.tgz". The result was satisfactory. 
  
 4. What is the disk size of the uncompressed dataset, How many images are in the directory 'BSR/BSDS500/data/images'?
 
 The command "du -h -c" was used in order to get this information. "du" returns the disk usage of the file inside the give folder, the "-h" flag converts the result returned by the original function into "human" readable form and the "-c" flag returns the total disk usage of all files in the selected folder. The results were the following:
+
 ![screenshot from 2019-02-03 19-15-48](https://user-images.githubusercontent.com/47038625/52249164-9975a780-28bf-11e9-80b2-eae5c5e5f7e6.png)
-in which we can read that the total disk usage of the uncompressed file is of 77 mb
+in which we can read that the total disk size of the uncompressed file is of 73 mb.
+
+In order to get the amount of images in the said folder, the following code was written:
+
+![count](https://user-images.githubusercontent.com/47038625/52249507-7cda6f00-28c1-11e9-85aa-a18b48a91f01.png)
+
+This code counts the amount of files that end with .jpg. knowing that all images in this folders use this format, this code is counting the amount of images in them. There's a total of 500 images in this folder. The code shown also creates a .text file containing information for every image in the folder. this will be used later. 
  
- 
-5. What are all the different resolutions? What is their format? Tip: use ``awk``, ``sort``, ``uniq`` 
+5. What are all the different resolutions? What is their format? Tip: use ``awk``, ``sort``, ``uniq``
+
+Using the .text file created in the last exercise, the next code was made: 
 
 6. How many of them are in *landscape* orientation (opposed to *portrait*)? Tip: use ``awk`` and ``cut``
  
