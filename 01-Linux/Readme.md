@@ -225,10 +225,19 @@ To get the amount of images in Portrait and Landscape orientation, the following
 
 ![port_land](https://user-images.githubusercontent.com/47038625/52250176-8e714600-28c4-11e9-8a8b-4cd970bcb219.png)
 
-This code transposes the .text file containing the dimensions of all images, then using the command "cut" and other manipulations, compares it to "481x321", being this the only Landscape orientation, the code sums 1 to the landscape pictures counter, otherwise sums 1 to the portrait pictures one. After that, prints both numbers on the terminal.
+This code transposes the .text file containing the dimensions of all images, then using the command "cut" and other manipulations, compares it to "481x321", being this the only Landscape orientation, the code sums 1 to the landscape pictures counter, otherwise sums 1 to the portrait pictures one. This processes is iterated over all images inside the folder in question. After that, prints both numbers on the terminal.
 The amount of Portrait oriented pictures is 152, while the amount of Landscape oriented pictures is 348.
  
 7. Crop all images to make them square (256x256) and save them in a different folder. Tip: do not forget about  [imagemagick](http://www.imagemagick.org/script/index.php).
+
+In order to crop all images to square size and put them in a new folder the following code was written:
+
+![cropping](https://user-images.githubusercontent.com/47038625/52250530-50752180-28c6-11e9-88f4-ebc043b4cbe5.png)
+
+This code creates a new folder called cropped_images and then, again, iterates over all images in the last folder. the processing consist of using the command "convert" with the flag "-crop" and giving the parameter 256x256+0+0, which simply says that the cropping will go from the superior left corner 256 pixel down and 256 right. The name given to each crop will be a number from 1 to the total amount of images, which is done using a counter and using it as a name.
+The resulting folder looks like this:
+
+![screenshot from 2019-02-04 22-01-43](https://user-images.githubusercontent.com/47038625/52250979-84e9dd00-28c8-11e9-98e2-01292bd6a2fe.png) 
 
 
 # Report
