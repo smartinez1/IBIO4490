@@ -181,6 +181,11 @@ information, the command "man grep" was used on the terminal.
 
 2. What is the meaning of ``#!/bin/python`` at the start of scripts?
 
+The #!/usr/bin/python line at the beginning of a code makes it easier to execute python codes,
+because it is no longer necessary to specify "Python" before executing, it's enough to type ./filename.py to execute it, as long as the file has the needed permission.
+
+![cositoraro](https://user-images.githubusercontent.com/47038625/52246504-1ac73d00-28b4-11e9-9e64-aa1f37648222.png)
+
 3. Download using ``wget`` the [*bsds500*](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html#bsds500) image segmentation database, and decompress it using ``tar`` (keep it in you hard drive, we will come back over this data in a few weeks).
  
 4. What is the disk size of the uncompressed dataset, How many images are in the directory 'BSR/BSDS500/data/images'?
