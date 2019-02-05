@@ -213,6 +213,11 @@ This code counts the amount of files that end with .jpg. knowing that all images
 
 Using the .text file created in the last exercise, the next code was made: 
 
+![all_dimension](https://user-images.githubusercontent.com/47038625/52249832-0fc7d900-28c3-11e9-9c2a-23992aba28d6.png)
+
+In this code, the command "awk" is used, in order to get only the dimension informaton of the images. This is written in another .text file.
+after that, the command "sort" is used so all dimensions are ordered. This must be done so the command "uniq" works, as it only deletes equal information when it's next to each other. doing this, we can conlude the only dimensions present in this folder are:
+321x481 & 481x321.
 6. How many of them are in *landscape* orientation (opposed to *portrait*)? Tip: use ``awk`` and ``cut``
  
 7. Crop all images to make them square (256x256) and save them in a different folder. Tip: do not forget about  [imagemagick](http://www.imagemagick.org/script/index.php).
