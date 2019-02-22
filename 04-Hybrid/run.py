@@ -13,6 +13,8 @@ os.system('rm -rf mergedNoPyramids.jpg')
 os.system('rm -rf mergedWithPyramids.jpg')
 os.system('rm -rf filteredImageLowPass.jpg')
 os.system('rm -rf filteredImageHighPass.jpg')
+os.system('rm -rf resultsAfterProcessing_road.jpg')
+os.system('rm -rf resultsAfterProcessing_bridge.jpg')
 os.system('rm -rf hybrid.jpg')
 
 
@@ -23,7 +25,6 @@ A=np.fliplr(A)
 Mb,Nb,cb=B.shape
 
 B=B[350:,200:Nb-150]
-#A=A[0:1800,200:1550]
 A=A[0:,0:]
 
 
@@ -117,10 +118,10 @@ plt.show()
 #----------------------------
 # Image Pyramids
 Ga = A.copy()
-gaussPyramid_A = [Ga]
+gaussPyramid_A=[Ga]
 Gb = B.copy()
-gaussPyramid_B = [Gb]
-pyramidLevel=8
+gaussPyramid_B=[Gb]
+pyramidLevel=6
 
 for idx in range(pyramidLevel):
      Ga = cv2.pyrDown(Ga)
@@ -129,7 +130,7 @@ for idx in range(pyramidLevel):
      gaussPyramid_B.append(Gb)
      
    
- # generate Laplacian Pyramid for A & B
+# generate Laplacian Pyramid for A & B
 laplacePyramid_A=[gaussPyramid_A[pyramidLevel-1]]
 laplacePyramid_B=[gaussPyramid_B[pyramidLevel-1]]
 for idx in range(pyramidLevel-1,0,-1):
@@ -141,23 +142,23 @@ for idx in range(pyramidLevel-1,0,-1):
      laplacePyramid_B.append(L)
      
 #Now add left and right halves of images in each level
-LS=[]     
+blendedList=[]     
 for la,lb in zip(laplacePyramid_A,laplacePyramid_B):
      rows,cols,dpt = la.shape
      ls = np.hstack((la[:,0:int(cols/2)],lb[:,int(cols/2):]))
-     LS.append(ls)     
+     blendedList.append(ls)     
      
-ls_ = LS[0]
-for i in range(1,pyramidLevel):
-     ls_ = cv2.pyrUp(ls_)
-     ls_ = cv2.add(ls_, LS[i])
+blended=blendedList[0]
+for idx in range(1,pyramidLevel):
+     blended=cv2.pyrUp(blended)
+     blended=cv2.add(blended,blendedList[idx])
      
-real = np.hstack((A[:,:int(cols/2)],B[:,int(cols/2):]))  
+real=np.hstack((A[:,:int(cols/2)],B[:,int(cols/2):]))  
 real=real.astype('uint8')
-ls_=ls_.astype('uint8')
+blended=blended.astype('uint8')
 plt.figure()
 plt.subplot(2,1,1)
-plt.imshow(ls_)
+plt.imshow(blended)
 plt.axis('off')
 plt.title('Blending using Pyramids') 
 plt.subplot(2,1,2)
@@ -167,17 +168,28 @@ plt.title('Blending without Pyramids')
 plt.show()
 
 real=cv2.cvtColor(real,cv2.COLOR_RGB2BGR)
-ls_=cv2.cvtColor(ls_,cv2.COLOR_RGB2BGR)
+blended=cv2.cvtColor(blended,cv2.COLOR_RGB2BGR)
 filteredA=cv2.cvtColor(filteredA,cv2.COLOR_RGB2BGR)
 filteredB=cv2.cvtColor(filteredB,cv2.COLOR_RGB2BGR)
 hybrid=cv2.cvtColor(hybrid,cv2.COLOR_RGB2BGR)
+B=cv2.cvtColor(B,cv2.COLOR_RGB2BGR)
+A=cv2.cvtColor(A,cv2.COLOR_RGB2BGR)
+
+for idx in range(pyramidLevel):
+    aux=cv2.cvtColor(blendedList[idx],cv2.COLOR_RGB2BGR)
+    #cv2.imshow(str(idx),aux)
+    cv2.imwrite('level_'+str(idx+1)+'.jpg',aux)
+    
 
 
 cv2.imwrite('mergedNoPyramids.jpg',real) 
-cv2.imwrite('mergedWithPyramids.jpg',ls_)
+cv2.imwrite('mergedWithPyramids.jpg',blended)
 cv2.imwrite('filteredImageLowPass.jpg',filteredA)  
 cv2.imwrite('filteredImageHighPass.jpg',filteredB)
-cv2.imwrite('hybrid.jpg',hybrid)  
+cv2.imwrite('hybrid.jpg',hybrid)
+cv2.imwrite('resultsAfterProcessing_road.jpg',B)  
+cv2.imwrite('resultsAfterProcessing_bridge.jpg',A)  
+
 
 
 
