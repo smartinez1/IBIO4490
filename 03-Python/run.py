@@ -29,7 +29,7 @@ base=('dataVision/MR_data_batch1')
 patients=[1,2,3,5,8,10,13,15,19,20]
 
 index=1
-totalImages=6
+totalImages=3
 fs=5
 for n in range(0,totalImages):
     idx=(np.random.randint(0,len(patients)-1))
@@ -113,6 +113,7 @@ for n in range(0,totalImages):
     plt.title(ann,fontsize=fs)
     
     index=index+2
+plt.savefig('imagesProject.png')
 os.system('rm -rf auxiliarFolder')    
 print("--- %s seconds ---"%(tm.time()-start_time))    
 plt.show()
