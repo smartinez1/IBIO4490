@@ -91,3 +91,4 @@ for idx in range(0,5):
     plt.axis('off')
     tit=('Original image, annotation='+str(anns[idx])+', prediction='+str(pred_tes[idx]))
     plt.title(tit)
+plt.show()
