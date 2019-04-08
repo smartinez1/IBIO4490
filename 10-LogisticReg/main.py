@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/afromero/anaconda3/bin/python
 # -*- coding: utf-8 -*-
 
 # read kaggle facial expression recognition challenge dataset (fer2013.csv)
@@ -91,7 +91,7 @@ def train(model):
     #--------------------------------------
     x_train, y_train, x_test, y_test = get_data()
     batch_size = 100# Change if you want
-    epochs = 10000 # Change if you want
+    epochs = 20000 # Change if you want
     for i in range(epochs):
         loss = []
         for j in range(0,x_train.shape[0], batch_size):
@@ -186,14 +186,18 @@ def test(model):
          fMeasure.append(FM)
          
      maxF=np.max(fMeasure)
+     maxACA=np.max(ACAs)
      jdx=0
      while maxF!=fMeasure[jdx]:
          jdx=jdx+1
+     kdx=0
+     while maxACA!=ACAs[kdx]:
+         kdx=kdx+1
          
      PR=plt.figure()
      plt.plot(reca,prec)
      plt.grid(True)
-     plt.title('Precision-Recall curve - F1='+str(maxF)+' in threshold='+str(Threshs[jdx])+', ACA='+str(ACAs[jdx]))
+     plt.title('Precision-Recall curve - F1='+str(maxF)+' in threshold='+str(Threshs[jdx])+', ACA='+str(ACAs[kdx])+' in threshold='+str(Threshs[kdx]))
      plt.xlabel('Recall')
      plt.ylabel('Precision')
      PR.savefig('Precision-Recall.PNG')
@@ -287,6 +291,6 @@ if __name__ == '__main__':
         model = Model()
         train(model)
         test(model)
-    
-    
+        
 
+  
