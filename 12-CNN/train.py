@@ -295,6 +295,28 @@ def print_network(model, name):
     print("The number of parameters {}".format(num_params)) 
 
 
+def train(data_loader, model, epoch):
+    model.train()
+    loss_cum = []
+    #Acc = 0
+    for batch_idx, (data,target) in tqdm.tqdm(enumerate(data_loader), total=len(data_loader), desc="[TRAIN] Epoch: {}".format(epoch)):
+        Data= next(iter(train_loader))
+        data=Data['image']
+        target=Data['labels']
+        data = data.to(device)
+        target = target.to(device)
+
+        output = model(data)
+        model.optimizer.zero_grad()
+        loss = model.Loss(output,target)   
+        loss.backward()
+        model.optimizer.step()
+        loss_cum.append(loss.item())
+        _, arg_max_out = torch.max(output.data.cpu(), 1)
+        #Acc += arg_max_out.long().eq(target.data.cpu().long()).sum()
+    
+    print("Loss: %0.3f"%(np.array(loss_cum).mean()))#, float(Acc*100)/len(data_loader.dataset)))
+
 def test(data_loader, model, epoch):
     model.eval()
     loss_cum = []
@@ -399,8 +421,7 @@ if __name__=='__main__':
     test_loader = DataLoader(transformed_dataset_test, batch_size=batchS,
                         shuffle=False, num_workers=workers)
     
-    model =torch.load('model.pt')
-    model.eval()
+    model = Net()
     model.to(device)
 
     model.training_params()
@@ -412,9 +433,11 @@ if __name__=='__main__':
     _ = model(img.to(device).requires_grad_(False))
 
     for epoch in range(epochs):
-        test(test_loader, model, epoch)
+        train(train_loader, model, epoch)
+        test(val_loader, model, epoch)
+        if TEST: test(test_loader, model, epoch)
     
-
+torch.save(model,'model_complex.pt')
 
                   
 
