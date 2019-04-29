@@ -250,14 +250,12 @@ class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
         #layer with 64 2d convolutional filter of size 3x3
-        self.conv1 = nn.Conv2d(3, 64, kernel_size=11) #Channels input: 1, c output: 63, filter of size 3
-        self.conv2 = nn.Conv2d(64, 192, kernel_size=7)
-        self.conv3 = nn.Conv2d(192,384, kernel_size=5)
-        self.conv4 = nn.Conv2d(384,256, kernel_size=3)
-        self.conv5 = nn.Conv2d(256, 256, kernel_size=3)
-        self.fc = nn.Linear(256,10)    
+        self.conv1 = nn.Conv2d(3, 64, kernel_size=3) #Channels input: 1, c output: 63, filter of size 3
+        self.conv2 = nn.Conv2d(64, 32, kernel_size=3)
+        self.conv3 = nn.Conv2d(32, 32, kernel_size=3)
+        self.fc = nn.Linear(32, 10)    
     
-    def forward(self, x, verbose=True):
+    def forward(self, x, verbose=False):
         if verbose: "Output Layer by layer"
         if verbose: print(x.size())
         x = F.max_pool2d(F.relu(self.conv1(x)), 2) #Perform a Maximum pooling operation over the nonlinear responses of the convolutional layer
@@ -268,14 +266,10 @@ class Net(nn.Module):
         if verbose: print(x.size())
         x = F.max_pool2d(F.relu(self.conv3(x)), 2)
         if verbose: print(x.size())
-        x = F.max_pool2d(F.relu(self.conv4(x)), 2)
-        if verbose: print(x.size())
         x = F.dropout(x, 0.25, training=self.training)
         if verbose: print(x.size())
-        x = F.max_pool2d(F.relu(self.conv5(x)), 2)
-        if verbose: print(x.size())
         #ipdb.set_trace()
-        x = x.view(-1, 256)
+        x = x.view(-1, 32)
         if verbose: print(x.size())
         x = self.fc(x)
         if verbose: print(x.size())
@@ -284,7 +278,7 @@ class Net(nn.Module):
     def training_params(self):
         self.optimizer = torch.optim.SGD(self.parameters(), lr=0.01, momentum=0.9, weight_decay=0.0)
         self.Loss = nn.BCEWithLogitsLoss()
- 
+  
 
 def print_network(model, name):
     num_params=0
