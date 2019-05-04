@@ -922,7 +922,7 @@ print(out)
 # In[32]:
 
 
-start_epoch = 0
+start_epoch = 10
 start_iteration = 0
 if resume:
     start_epoch = checkpoint['epoch']
