@@ -29,7 +29,7 @@ configurations = {
         lr=1.0e-10,
         momentum=0.99,
         weight_decay=0.0005,
-        interval_validate=8000000000000000000000,
+        interval_validate=4000,
     )
 }
 
