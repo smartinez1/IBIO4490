@@ -23,6 +23,8 @@ import yaml
 import warnings
 warnings.filterwarnings('ignore')
 
+os.system('mkdir imagesProduced')
+
 configurations = {
     # same configuration as original work
     # https://github.com/shelhamer/fcn.berkeleyvision.org
@@ -266,7 +268,7 @@ val_loader = torch.utils.data.DataLoader(
 # In[11]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 for data, target in train_loader: break
 print(data.shape)
@@ -275,7 +277,8 @@ data.min()
 data_show, label_show = train_loader.dataset.untransform(data[0].cpu().clone(), target[0].cpu().clone())
 
 plt.imshow(data_show)
-plt.show()
+plt.savefig('imageProduced/data_show')
+#plt.show()
 
 def imshow_label(label_show):
     import matplotlib
@@ -290,7 +293,8 @@ def imshow_label(label_show):
     plt.imshow(label_show, cmap=cmap, norm=norm)
     cbar = plt.colorbar(ticks=bounds)
     cbar.ax.set_yticklabels(train_loader.dataset.class_names)
-    plt.show()    
+    plt.savefig('imagesProduced/label')
+    #plt.show()    
     
 imshow_label(label_show)
 
@@ -661,7 +665,7 @@ if resume:
 # In[ ]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 import datetime
 from distutils.version import LooseVersion
 import math
@@ -750,7 +754,7 @@ class Trainer(object):
             with open(osp.join(self.out, 'log.csv'), 'w') as f:
                 f.write(','.join(self.log_headers) + '\n')
 
-        self.epoch = 0
+        self.epoch =10
         self.iteration = 0
         self.max_iter = max_iter
         self.best_mean_iu = 0
@@ -801,7 +805,8 @@ class Trainer(object):
         #scipy.misc.imsave(out_file, img_)
         imageio.imwrite(out_file, img_)
         plt.imshow(imageio.imread(out_file))
-        plt.show()
+        plt.savefig('produceImages/validate')
+        #plt.show()
 
         val_loss /= len(self.val_loader)
 
@@ -910,7 +915,7 @@ trainer = Trainer(
 # In[ ]:
 
 
-start_epoch = 0
+start_epoch = 10
 start_iteration = 0
 if resume:
     start_epoch = checkpoint['epoch']
