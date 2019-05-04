@@ -744,7 +744,7 @@ class Trainer(object):
             with open(osp.join(self.out, 'log.csv'), 'w') as f:
                 f.write(','.join(self.log_headers) + '\n')
 
-        self.epoch = 0
+        self.epoch = 10
         self.iteration = 0
         self.max_iter = max_iter
         self.best_mean_iu = 0
