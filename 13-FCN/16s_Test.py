@@ -283,7 +283,7 @@ def untransform(img):
 # In[ ]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 from torch.autograd import Variable
 
@@ -303,7 +303,7 @@ def imshow_label(label_show, alpha=None):
         cbar = plt.colorbar(ticks=bounds)
         cbar.ax.set_yticklabels(class_names)
 
-def run_fromfile(img_file):
+def run_fromfile(img_file,name):
     img_torch = torch.unsqueeze(fileimg2model(img_file), 0)
     if cuda: img_torch = img_torch.to('cuda')
     with torch.no_grad():
@@ -311,42 +311,45 @@ def run_fromfile(img_file):
         lbl_pred = score.data.max(1)[1].cpu().numpy()[:, :, :]
 
         plt.imshow(plt.imread(img_file))
-        plt.show()
+        plt.savefig(('extraImages/image_'+name+'.png'))
+        #plt.show()
 
         plt.imshow(plt.imread(img_file), alpha=.9)
         imshow_label(lbl_pred[0], alpha=0.5)
-        plt.show()      
+        plt.savefig(('extraImages/label_asd_'+name+'.png'))
+        #plt.show()      
 
         imshow_label(lbl_pred[0])
-        plt.show()       
+        plt.savefig(('extraImages/label_'+name+'.png'))
+        #plt.show()       
 
 
 # In[1]:
 
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 import matplotlib.pyplot as plt
 img_file = 'imgs/demo.jpg'
-run_fromfile(img_file)
+run_fromfile(img_file,'demo')
 
 
 # In[2]:
 
 
 img_file = 'imgs/demo1.jpg'
-run_fromfile(img_file)
+run_fromfile(img_file,'demo1')
 
 
 # In[3]:
 
 
 img_file = 'imgs/demo2.JPG'
-run_fromfile(img_file)
+run_fromfile(img_file,'demo2')
 
 
 # In[4]:
 
 
 img_file = 'imgs/demo3.jpg'
-un_fromfile(img_file)
+run_fromfile(img_file,'demo3')
 
