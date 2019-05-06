@@ -277,7 +277,7 @@ data.min()
 data_show, label_show = train_loader.dataset.untransform(data[0].cpu().clone(), target[0].cpu().clone())
 
 plt.imshow(data_show)
-plt.savefig('imageProduced/data_show')
+plt.savefig('imagesProduced/data_show')
 #plt.show()
 
 def imshow_label(label_show):
@@ -805,7 +805,7 @@ class Trainer(object):
         #scipy.misc.imsave(out_file, img_)
         imageio.imwrite(out_file, img_)
         plt.imshow(imageio.imread(out_file))
-        plt.savefig('produceImages/validate')
+        plt.savefig('imagesProduced/validate')
         #plt.show()
 
         val_loss /= len(self.val_loader)
