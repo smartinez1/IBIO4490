@@ -21,6 +21,8 @@ import yaml
 import warnings
 warnings.filterwarnings('ignore')
 
+os.system('mkdir extraImages')
+
 configurations = {
     # same configuration as original work
     # https://github.com/shelhamer/fcn.berkeleyvision.org
